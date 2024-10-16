@@ -1,7 +1,30 @@
-function CheckOtpForm() {
+import toast from "react-hot-toast";
+import { checkOtp } from "../../services/auth";
+
+function CheckOtpForm({ code, setCode, setStep, mobile }) {
+  const submitHandler = async(event) => {
+    event.preventDefault();
+    if(code.length !==5) return;
+    const {error,response} = await checkOtp(mobile,code);
+    if(response) console.log(response)
+    if (error) toast.error(error.response.data.message);
+  };
   return (
-    <div>CheckOtpForm</div>
-  )
+    <form onSubmit={submitHandler}>
+      <p>تایید کد اس ام اس شده</p>
+      <span>کد پیامک شده به شماره {mobile} را وارد کنید.</span>
+      <label htmlFor="code">کد تایید را وارد کنید.</label>
+      <input
+        type="text"
+        id="code"
+        onChange={(e) => setCode(e.target.value)}
+        value={code}
+        placeholder="کد تایید"
+      />
+      <button type="submit">ورود</button>
+      <button onClick={() => setStep(1)}>تغییر شماره موبایل</button>
+    </form>
+  );
 }
 
-export default CheckOtpForm
+export default CheckOtpForm;

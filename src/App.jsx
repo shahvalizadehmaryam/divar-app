@@ -1,5 +1,5 @@
 import { Toaster } from "react-hot-toast";
-import AuthPage from "./pages/AuthPage";
+import AuthPage from "pages/AuthPage";
 
 function App() {
   return (

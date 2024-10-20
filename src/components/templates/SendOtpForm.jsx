@@ -7,7 +7,8 @@ function SendOtpForm({ mobile, setMobile, setStep }) {
     if (mobile.length !== 11) return;
     const { response, error } = await sendOtp(mobile);
     if (response) setStep(2);
-    if (error) toast.error(error.response.data.message);
+    if (error) console.log(error);
+    // if (error) toast.error(error.response.data.message);
     console.log({ response, error });
   };
   return (

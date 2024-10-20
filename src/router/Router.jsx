@@ -1,11 +1,11 @@
 import { Route, Routes } from "react-router-dom";
-import HomePage from "../pages/HomePage";
-import DashboardPage from "../pages/DashboardPage";
-import AuthPage from "../pages/AuthPage";
-import AdminPage from "../pages/AdminPage";
-import NotFoundPage from "../pages/404";
 import { useQuery } from "@tanstack/react-query";
-import { getProfile } from "../services/user";
+import HomePage from "pages/HomePage";
+import DashboardPage from "pages/DashboardPage";
+import AuthPage from "pages/AuthPage";
+import AdminPage from "pages/AdminPage";
+import NotFoundPage from "pages/404";
+import { getProfile } from "services/user";
 
 const Router = () => {
   // get users data to handle accessibility based on user's role

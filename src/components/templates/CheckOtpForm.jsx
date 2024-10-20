@@ -1,13 +1,15 @@
 import toast from "react-hot-toast";
-import { checkOtp } from "../../services/auth";
-import { setCookie } from "../../utils/cookie";
+import { checkOtp } from "services/auth";
+import { setCookie } from "utils/cookie";
 
 function CheckOtpForm({ code, setCode, setStep, mobile }) {
   const submitHandler = async (event) => {
     event.preventDefault();
     if (code.length !== 5) return;
     const { error, response } = await checkOtp(mobile, code);
-    if (response) setCookie(response.data);
+    if (response) {
+      setCookie(response.data);
+    }
     if (error) toast.error(error.response.data.message);
   };
   return (

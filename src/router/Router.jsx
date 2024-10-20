@@ -1,10 +1,11 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import HomePage from "pages/HomePage";
+import AdminPage from "pages/AdminPage";
 import DashboardPage from "pages/DashboardPage";
 import AuthPage from "pages/AuthPage";
-import AdminPage from "pages/AdminPage";
 import NotFoundPage from "pages/404";
+import Loader from "components/modules/Loader";
 import { getProfile } from "services/user";
 
 const Router = () => {
@@ -14,7 +15,7 @@ const Router = () => {
     queryFn: getProfile,
   });
   console.log({ data, isLoading });
-  if (isLoading) return <h3>Loading...</h3>;
+  if (isLoading) return <Loader />;
   return (
     <Routes>
       <Route index element={<HomePage />} />

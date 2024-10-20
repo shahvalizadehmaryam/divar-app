@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { checkOtp } from "services/auth";
 import { setCookie } from "utils/cookie";
 import { getProfile } from "services/user";
+import styles from "./CheckOtpForm.module.css"
 
 function CheckOtpForm({ code, setCode, setStep, mobile }) {
   const navigate = useNavigate();
@@ -23,7 +24,7 @@ function CheckOtpForm({ code, setCode, setStep, mobile }) {
     if (error) toast.error(error.response.data.message);
   };
   return (
-    <form onSubmit={submitHandler}>
+    <form onSubmit={submitHandler} className={styles.form}>
       <p>تایید کد اس ام اس شده</p>
       <span>کد پیامک شده به شماره {mobile} را وارد کنید.</span>
       <label htmlFor="code">کد تایید را وارد کنید.</label>
@@ -35,7 +36,7 @@ function CheckOtpForm({ code, setCode, setStep, mobile }) {
         placeholder="کد تایید"
       />
       <button type="submit">ورود</button>
-      <button onClick={() => setStep(1)}>تغییر شماره موبایل</button>
+      <button onClick={() => setStep(1)} className={styles.backButton}>تغییر شماره موبایل</button>
     </form>
   );
 }
